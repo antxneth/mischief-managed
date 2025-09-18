@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>School of Codecraft & Computery</title>
+  <meta name="description" content="A Hogwarts-inspired Computer Science brochure — tutorials, projects, AI demos, cybersecurity, careers and more.">
+  <meta name="theme-color" content="#04121a">
+
+  <!-- Open Graph for sharing -->
+  <meta property="og:title" content="School of Codecraft & Computery">
+  <meta property="og:description" content="Where magic meets computer science — discover your path.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/preview.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HERO -->
+  <header class="hero" role="banner" aria-label="School of Codecraft and Computery">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <h1 class="site-title">School of Codecraft &amp; Computery</h1>
+      <p class="site-subtitle">Where magic meets computer science — discover your path.</p>
+
+      <div class="hero-controls">
+        <button id="btn-start-quiz" class="btn primary" aria-controls="sorting-modal" aria-expanded="false">✨ Take the Sorting Ceremony</button>
+        <button id="btn-skip-quiz" class="btn ghost">Explore without Sorting</button>
+        <button id="audio-toggle" class="btn audio" title="Toggle ambient audio" aria-pressed="false">🔈</button>
+      </div>
+
+      <p class="hero-note">Not ready? Scroll down to explore courses, projects, career paths, and success stories.</p>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="main-nav" role="navigation" aria-label="Primary">
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul>
+      <li><a href="#why-cs">Why CS</a></li>
+      <li><a href="#spellbook">Spellbook</a></li>
+      <li><a href="#potions-lab">Potions Lab</a></li>
+      <li><a href="#divination-data">Divination & Data</a></li>
+      <li><a href="#dark-hacks">Defense</a></li>
+      <li><a href="#ministry-tech">Careers</a></li>
+      <li><a href="#success-stories">Success Stories</a></li>
+      <li><a href="#restricted-section">Resources</a></li>
+    </ul>
+  </nav>
+
+  <!-- SORTING MODAL -->
+  <div id="sorting-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sorting-title">
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h2 id="sorting-title">Sorting Ceremony</h2>
+        <button id="close-sorting" class="btn small" aria-label="Close sorting" aria-controls="sorting-modal" aria-expanded="false">✕</button>
+      </header>
+
+      <div class="modal-body">
+        <p class="lead">Answer five short questions. We'll match you to a CS path & Hogwarts House — a fun way to explore majors.</p>
+
+        <form id="sorting-form" class="sorting-form" aria-label="Sorting questions">
+          <!-- Q1 -->
+          <div class="q">
+            <p>1) Which enchanted task excites you most?</p>
+            <div class="choices">
+              <input id="q1-web" type="radio" name="q1" value="web">
+              <label for="q1-web">Build beautiful and interactive websites</label>
+
+              <input id="q1-data" type="radio" name="q1" value="data">
+              <label for="q1-data">Use data to predict and uncover patterns</label>
+
+              <input id="q1-sec" type="radio" name="q1" value="sec">
+              <label for="q1-sec">Defend systems and outsmart attackers</label>
+
+              <input id="q1-sys" type="radio" name="q1" value="sys">
+              <label for="q1-sys">Optimize code and engineer fast systems</label>
+
+              <input id="q1-devops" type="radio" name="q1" value="devops">
+              <label for="q1-devops">Automate deployments and pipelines</label>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="q">
+            <p>2) Which magical artifact would you keep?</p>
+            <div class="choices">
+              <input id="q2-book" type="radio" name="q2" value="book">
+              <label for="q2-book">The Spellbook — endless programming knowledge</label>
+
+              <input id="q2-crystal" type="radio" name="q2" value="crystal">
+              <label for="q2-crystal">The Crystal Ball — visions powered by data</label>
+
+              <input id="q2-shield" type="radio" name="q2" value="shield">
+              <label for="q2-shield">The Shield — protection from dark forces</label>
+
+              <input id="q2-wand" type="radio" name="q2" value="wand">
+              <label for="q2-wand">The Wand — ultimate system control</label>
+
+              <input id="q2-gear" type="radio" name="q2" value="gear">
+              <label for="q2-gear">The Gear — flawless automation charm</label>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="q">
+            <p>3) Which common room feels most like home?</p>
+            <div class="choices">
+              <input id="q3-cozy" type="radio" name="q3" value="cozy">
+              <label for="q3-cozy">A cozy space filled with books and design sketches</label>
+
+              <input id="q3-lab" type="radio" name="q3" value="lab">
+              <label for="q3-lab">A data lab buzzing with charts and predictions</label>
+
+              <input id="q3-stronghold" type="radio" name="q3" value="stronghold">
+              <label for="q3-stronghold">A secure stronghold with shields and firewalls</label>
+
+              <input id="q3-engine" type="radio" name="q3" value="engine">
+              <label for="q3-engine">A machine room of humming servers and code</label>
+
+              <input id="q3-workshop" type="radio" name="q3" value="workshop">
+              <label for="q3-workshop">A workshop of gears, pipelines, and tools</label>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="q">
+            <p>4) Which magical challenge would you take on?</p>
+            <div class="choices">
+              <input id="q4-puzzle" type="radio" name="q4" value="puzzle">
+              <label for="q4-puzzle">Solve intricate riddles with elegant logic</label>
+
+              <input id="q4-vision" type="radio" name="q4" value="vision">
+              <label for="q4-vision">Foresee trends by analyzing hidden data</label>
+
+              <input id="q4-battle" type="radio" name="q4" value="battle">
+              <label for="q4-battle">Duel hackers and protect enchanted vaults</label>
+
+              <input id="q4-optimize" type="radio" name="q4" value="optimize">
+              <label for="q4-optimize">Tune performance to magical perfection</label>
+
+              <input id="q4-construct" type="radio" name="q4" value="construct">
+              <label for="q4-construct">Construct seamless automated workflows</label>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="q">
+            <p>5) Which companion would guide your studies?</p>
+            <div class="choices">
+              <input id="q5-phoenix" type="radio" name="q5" value="phoenix">
+              <label for="q5-phoenix">A Phoenix — creative, resilient, ever-renewing</label>
+
+              <input id="q5-raven" type="radio" name="q5" value="raven">
+              <label for="q5-raven">A Raven — insightful, sharp, data-driven</label>
+
+              <input id="q5-dragon" type="radio" name="q5" value="dragon">
+              <label for="q5-dragon">A Dragon — fierce, protective, powerful</label>
+
+              <input id="q5-unicorn" type="radio" name="q5" value="unicorn">
+              <label for="q5-unicorn">A Unicorn — pure, efficient, graceful</label>
+
+              <input id="q5-owl" type="radio" name="q5" value="owl">
+              <label for="q5-owl">An Owl — wise, dependable, systematic</label>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="submit-sorting" class="btn primary">Reveal my Path</button>
+            <button type="button" id="sorting-cancel" class="btn ghost">Cancel</button>
+          </div>
+        </form>
+
+        <div id="sorting-result" class="sorting-result" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main" tabindex="-1">
+
+    <!-- WHY CS / BROCHURE -->
+    <section id="why-cs" class="section brochure" aria-labelledby="why-title">
+      <div class="container">
+        <div class="content">
+          <h2 id="why-title">Why Study Computer Science?</h2>
+          <p class="lead">
+            Computer Science is creative, powerful, and everywhere — it helps you build products, save lives with data, protect people, and create art and games. 
+            It’s a discipline that pairs logic with imagination.
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat">
+              <h3><span class="highlight">+20%</span> Job Growth</h3>
+              <p>Fields like AI and security are expanding rapidly — more opportunities await graduates.</p>
+            </div>
+            <div class="stat">
+              <h3><span class="highlight">High</span> Earning Potential</h3>
+              <p>Entry-level roles pay well and provide clear career growth paths.</p>
+            </div>
+            <div class="stat">
+              <h3><span class="highlight">Impact</span> & Creativity</h3>
+              <p>Create tools, games, research, and products that affect millions worldwide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPELLBOOK -->
+    <section id="spellbook" class="section" aria-labelledby="spellbook-title">
+      <div class="container">
+        <img src="assets/icons/spellbook.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="spellbook-title">The Spellbook — Programming &amp; Frontend</h2>
+          <p class="lead">Learn the foundations of programming, web development, and spellbinding user interfaces.</p>
+
+          <div class="spellbook-grid">
+            <!-- Spells -->
+            <div class="spell-card">
+              <div class="spell-front">
+                <h3 class="spell-title">Lumos</h3>
+                <p class="spell-sub">Variables &amp; Printing</p>
+              </div>
+              <div class="spell-back">
+                <p>Just like Lumos lights the way, variables and printing reveal what’s hidden in code.</p>
+              </div>
+            </div>
+
+            <div class="spell-card">
+              <div class="spell-front">
+                <h3 class="spell-title">Alohomora</h3>
+                <p class="spell-sub">Data Structures</p>
+              </div>
+              <div class="spell-back">
+                <p>Alohomora unlocks doors — and data structures unlock efficiency in computing.</p>
+              </div>
+            </div>
+
+            <!-- Accio -->
+            <div class="spell-card">
+              <div class="spell-front">
+                <h3 class="spell-title">Accio</h3>
+                <p class="spell-sub">Functions</p>
+              </div>
+              <div class="spell-back">
+                <p>Accio summons objects — functions summon reusable blocks of logic in your code.</p>
+              </div>
+            </div>
+
+            <!-- Wingardium Leviosa -->
+            <div class="spell-card">
+              <div class="spell-front">
+                <h3 class="spell-title">Wingardium Leviosa</h3>
+                <p class="spell-sub">Loops</p>
+              </div>
+              <div class="spell-back">
+                <p>Loops lift your code efficiency — like Leviosa, they repeat tasks without tiring.</p>
+              </div>
+            </div>
+            
+            <!-- Expelliarmus -->
+            <div class="spell-card">
+              <div class="spell-front">
+                <h3 class="spell-title">Expelliarmus</h3>
+                <p class="spell-sub">Debugging</p>
+              </div>
+              <div class="spell-back">
+                <p>Expelliarmus disarms your opponent — debugging disarms your code of pesky bugs.</p>
+              </div>
+            </div>
+
+            <!-- Expecto Patronum -->
+            <div class="spell-card">
+              <div class="spell-front">
+                <h3 class="spell-title">Expecto Patronum</h3>
+                <p class="spell-sub">Problem Solving</p>
+              </div>
+              <div class="spell-back">
+                <p>Like summoning a Patronus, problem-solving chases away the darkness of confusion in code.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POTIONS LAB -->
+    <section id="potions-lab" class="section" aria-labelledby="potions-title">
+      <div class="container">
+        <img src="assets/icons/potion.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="potions-title">Potions Lab — Backend, Systems & DevOps</h2>
+          <p class="lead">Understand servers, containers, CI/CD, and how things run reliably in the real world.</p>
+
+          <h3>Simulated terminal</h3>
+          <div class="terminal" id="term-output" aria-live="polite">&gt; Welcome to the Potions Lab terminal. Press Run to simulate building a potion (project).</div>
+          <div class="pg-controls">
+            <button id="term-run" class="btn small">Run</button>
+            <button id="term-reset" class="btn small ghost">Reset</button>
+          </div>
+
+          <h3>Mini-projects</h3>
+          <ol>
+            <li>Build a small REST API</li>
+            <li>Containerize with Docker</li>
+            <li>Set up CI & automated tests</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIVINATION & DATA -->
+    <section id="divination-data" class="section" aria-labelledby="divination-title">
+      <div class="container">
+        <img src="assets/icons/crystal-ball.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="divination-title">Divination & Data — AI / ML / Data Science</h2>
+          <p class="lead">Data is the modern crystal ball — learn how to clean data, build models, interpret results, and be responsible with AI.</p>
+
+          <h3>Mini-quiz</h3>
+          <p><strong>Which metric is best for imbalanced classification?</strong></p>
+          <div class="choices-quiz">
+            <input id="dq-accuracy" type="radio" name="dq" value="accuracy">
+            <label for="dq-accuracy">Accuracy</label>
+
+            <input id="dq-auc" type="radio" name="dq" value="auc">
+            <label for="dq-auc">AUC-ROC</label>
+
+            <input id="dq-f1" type="radio" name="dq" value="f1">
+            <label for="dq-f1">F1-score</label>
+          </div>
+          <div class="pg-controls">
+            <button id="dq-check" class="btn small">Check answer</button>
+          </div>
+          <div id="dq-result" class="quiz-result" aria-live="polite"></div>
+
+          <h3>Applications</h3>
+          <ul class="bullets">
+            <li>Predictive analytics in health, climate, and business</li>
+            <li>Visualization to tell compelling stories</li>
+            <li>Responsible ML & ethics</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFENSE -->
+    <section id="dark-hacks" class="section" aria-labelledby="defense-title">
+      <div class="container">
+        <img src="assets/icons/shield.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="defense-title">Defense Against the Dark Hacks — Cybersecurity</h2>
+          <p class="lead">Learn threat modelling, secure coding, and how to think like an ethical hacker.</p>
+
+          <h3>Micro-CTF (safe)</h3>
+          <p>Find the token hidden in the page and submit it here.</p>
+          <input id="ctf-input" class="ctf-input" placeholder="Enter token..." aria-label="Enter secret token">
+          <div class="pg-controls">
+            <button id="ctf-check" class="btn small">Submit</button>
+          </div>
+          <div id="ctf-result" class="quiz-result" aria-live="polite"></div>
+
+          <h3>Why security?</h3>
+          <ul class="bullets">
+            <li>High demand & impact</li>
+            <li>Puzzle-driven and practical</li>
+            <li>Protect people and systems</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MINISTRY -->
+    <section id="ministry-tech" class="section" aria-labelledby="ministry-title">
+      <div class="container">
+        <img src="assets/icons/scroll.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="ministry-title">Ministry of Tech — Careers & Portfolios</h2>
+          <p class="lead">Paths, roles, and practical advice: internships, CVs, mock interviews, and portfolio building.</p>
+
+          <div class="pg-controls">
+            <button id="download-resume" class="btn small">Generate Resume Template</button>
+          </div>
+
+          <h3>Career snapshots</h3>
+          <div class="bullets">
+            <p><strong>Software Engineer</strong> — build products, collaborate, focus on quality.</p>
+            <p><strong>Data Scientist</strong> — analyze, model, communicate insights.</p>
+            <p><strong>Security Analyst</strong> — audit, defend, respond to incidents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUCCESS STORIES -->
+    <section id="success-stories" class="section brochure" aria-labelledby="stories-title">
+      <div class="container">
+        <div class="content">
+          <h2 id="stories-title">Success Stories</h2>
+          <p class="lead">Real students, real projects. See how others turned curiosity into careers.</p>
+
+          <div class="testimonials">
+            <blockquote>
+              <p>“I built my first interactive app in the Spellbook track. Internships followed — CS changed everything.” — <strong>Aisha, Software Engineer</strong></p>
+            </blockquote>
+            <blockquote>
+              <p>“After the Potions Lab projects, I deployed a service used by thousands. The course prepared me for real systems.” — <strong>Marco, DevOps Engineer</strong></p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESTRICTED -->
+    <section id="restricted-section" class="section" aria-labelledby="restricted-title">
+      <div class="container">
+        <img src="assets/icons/spellbook.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="restricted-title">Restricted Section — Cheat Sheets & Downloads</h2>
+          <p class="lead">Download cheat sheets and a starter toolkit for CS students.</p>
+
+          <div class="pg-controls">
+            <button id="download-cheats" class="btn small">Download Cheat Pack</button>
+          </div>
+
+          <h3>Pack contents</h3>
+          <ul class="bullets">
+            <li>HTML & CSS cheat sheet</li>
+            <li>Common algorithms & Big-O</li>
+            <li>Git & deployment quick commands</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p>School of Codecraft &amp; Computery — Mischief Managed © 2025</p>
+      <small>Built with magic &amp; JavaScript</small>
+    </div>
+  </footer>
+
+  <!-- Ambient audio (muted by default) -->
+  <audio id="bg-audio" loop preload="auto" muted>
+    <source src="assets/theme-bg.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

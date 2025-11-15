@@ -312,7 +312,9 @@ main {
 /* === QUIZZES & INPUTS === */
 .choices-quiz label,
 .choices label {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin: 6px 0;
   cursor: pointer;
   font-family: "LUMOS", serif;
@@ -344,6 +346,18 @@ main {
 }
 
 /* === MODAL === */
+#sorting-form .subheading {
+  margin: 4px 0 12px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .modal {
   position: fixed;
   inset: 0;
@@ -355,6 +369,19 @@ main {
   background: linear-gradient(180deg, rgba(1,2,4,0.6), rgba(0,0,0,0.6));
 }
 .modal[aria-hidden="false"] {
+  display: flex;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(1,2,4,0.6), rgba(0,0,0,0.6));
+}
+.modal-overlay[aria-hidden="false"] {
   display: flex;
 }
 .modal-panel {
@@ -379,6 +406,113 @@ main {
   overflow-y: auto;
   padding-right: 8px;
   font-family: "LUMOS", serif;
+}
+
+/* === SORTING QUIZ MODAL UPDATES === */
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #89c1ff);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+#sorting-form .q { 
+  display:none; 
+  margin-bottom:16px; 
+}
+#sorting-form .q.active { 
+  display:block;
+}
+#sorting-form label {
+ display:block; 
+ margin:6px 0; 
+ padding:8px 12px; 
+ border-radius:8px; 
+ cursor:pointer; 
+ background:rgba(255,255,255,0.01); 
+ transition: background 0.2s ease; 
+}
+#sorting-form label:hover { 
+  background:rgba(124,86,255,0.1); 
+}
+#sorting-form input[type="radio"]:checked + label { 
+  background: linear-gradient(90deg,var(--accent), #89c1ff); 
+  color:#031021; font-weight:700; 
+}
+.result-card { 
+  margin-top:12px; 
+  padding:16px; border-radius:var(--card-radius); 
+  background: rgba(255,255,255,0.02); 
+  text-align:center; 
+  font-family:"LUMOS", serif; 
+}
+
+/* Question blocks */
+#sorting-form .q {
+  display: none;
+  margin-bottom: 16px;
+}
+#sorting-form .q.active {
+  display: block;
+}
+#sorting-form .q p {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+#sorting-form label {
+  display: block;
+  margin: 6px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.01);
+  transition: background 0.2s ease;
+}
+#sorting-form label:hover {
+  background: rgba(124,86,255,0.1);
+}
+
+/* Result card styling */
+.result-card {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: var(--card-radius);
+  background: rgba(255,255,255,0.02);
+  text-align: center;
+  font-family: "LUMOS", serif;
+}
+.result-card h3 {
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.result-card p {
+  color: var(--muted);
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.result-actions {
+  margin-top: 12px;
+}
+.result-actions .btn {
+  margin-top: 6px;
+}
+
+/* Highlight selected option visually */
+#sorting-form input[type="radio"]:checked + label {
+  background: linear-gradient(90deg,var(--accent), #89c1ff);
+  color: #031021;
+  font-weight: 700;
 }
 
 /* === WHY CS Section === */

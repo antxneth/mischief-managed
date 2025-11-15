@@ -7,12 +7,6 @@
   <meta name="description" content="A Hogwarts-inspired Computer Science brochure — tutorials, projects, AI demos, cybersecurity, careers and more.">
   <meta name="theme-color" content="#04121a">
 
-  <!-- Open Graph for sharing -->
-  <meta property="og:title" content="School of Codecraft and Computery">
-  <meta property="og:description" content="Where magic meets computer science — discover your path.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/preview.png">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,130 +42,70 @@
     </ul>
   </nav>
 
-  <!-- SORTING MODAL -->
-  <div id="sorting-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sorting-title">
-    <div class="modal-panel">
-      <header class="modal-header">
-        <h2 id="sorting-title">Sorting Ceremony</h2>
-        <button id="close-sorting" class="btn small" aria-label="Close sorting" aria-controls="sorting-modal" aria-expanded="false">✕</button>
-      </header>
-
+  <!-- Sorting Modal -->
+  <div id="sorting-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Sorting Ceremony</h2>
+        <button id="close-sorting" aria-label="Close modal">✖</button>
+      </div>
       <div class="modal-body">
-        <p class="lead">Answer five short questions. We'll match you to a CS path & Hogwarts House — a fun way to explore majors.</p>
+        <!-- Progress Bar -->
+        <div id="sorting-progress" class="progress-bar">
+          <div class="progress-fill" style="width:0%"></div>
+        </div>
 
-        <form id="sorting-form" class="sorting-form" aria-label="Sorting questions">
-          <!-- Q1 -->
-          <div class="q">
-            <p>1) Which enchanted task excites you most?</p>
-            <div class="choices">
-              <input id="q1-web" type="radio" name="q1" value="web">
-              <label for="q1-web">Build beautiful and interactive websites</label>
-
-              <input id="q1-data" type="radio" name="q1" value="data">
-              <label for="q1-data">Use data to predict and uncover patterns</label>
-
-              <input id="q1-sec" type="radio" name="q1" value="sec">
-              <label for="q1-sec">Defend systems and outsmart attackers</label>
-
-              <input id="q1-sys" type="radio" name="q1" value="sys">
-              <label for="q1-sys">Optimize code and engineer fast systems</label>
-
-              <input id="q1-devops" type="radio" name="q1" value="devops">
-              <label for="q1-devops">Automate deployments and pipelines</label>
-            </div>
+        <!-- Quiz Form -->
+        <form id="sorting-form">
+          <!-- Question 1 -->
+          <div class="q active">
+            <p>1. Pick your favorite tool:</p>
+            <label><input type="radio" name="q1" value="web"> Wand & Canvas</label>
+            <label><input type="radio" name="q1" value="data"> Crystal Ball</label>
+            <label><input type="radio" name="q1" value="sec"> Shield & Dagger</label>
+            <label><input type="radio" name="q1" value="sys"> Spellbook of Systems</label>
+            <label><input type="radio" name="q1" value="devops"> Gear & Automation</label>
           </div>
-
-          <!-- Q2 -->
+          <!-- Question 2 -->
           <div class="q">
-            <p>2) Which magical artifact would you keep?</p>
-            <div class="choices">
-              <input id="q2-book" type="radio" name="q2" value="book">
-              <label for="q2-book">The Spellbook — endless programming knowledge</label>
-
-              <input id="q2-crystal" type="radio" name="q2" value="crystal">
-              <label for="q2-crystal">The Crystal Ball — visions powered by data</label>
-
-              <input id="q2-shield" type="radio" name="q2" value="shield">
-              <label for="q2-shield">The Shield — protection from dark forces</label>
-
-              <input id="q2-wand" type="radio" name="q2" value="wand">
-              <label for="q2-wand">The Wand — ultimate system control</label>
-
-              <input id="q2-gear" type="radio" name="q2" value="gear">
-              <label for="q2-gear">The Gear — flawless automation charm</label>
-            </div>
+            <p>2. Which trait describes you best?</p>
+            <label><input type="radio" name="q2" value="web"> Curiosity</label>
+            <label><input type="radio" name="q2" value="data"> Wisdom</label>
+            <label><input type="radio" name="q2" value="sec"> Bravery</label>
+            <label><input type="radio" name="q2" value="sys"> Ambition</label>
+            <label><input type="radio" name="q2" value="devops"> Reliability</label>
           </div>
-
-          <!-- Q3 -->
+          <!-- Question 3 -->
           <div class="q">
-            <p>3) Which common room feels most like home?</p>
-            <div class="choices">
-              <input id="q3-cozy" type="radio" name="q3" value="cozy">
-              <label for="q3-cozy">A cozy space filled with books and design sketches</label>
-
-              <input id="q3-lab" type="radio" name="q3" value="lab">
-              <label for="q3-lab">A data lab buzzing with charts and predictions</label>
-
-              <input id="q3-stronghold" type="radio" name="q3" value="stronghold">
-              <label for="q3-stronghold">A secure stronghold with shields and firewalls</label>
-
-              <input id="q3-engine" type="radio" name="q3" value="engine">
-              <label for="q3-engine">A machine room of humming servers and code</label>
-
-              <input id="q3-workshop" type="radio" name="q3" value="workshop">
-              <label for="q3-workshop">A workshop of gears, pipelines, and tools</label>
-            </div>
+            <p>3. Your preferred workspace?</p>
+            <label><input type="radio" name="q3" value="web"> Cozy nook</label>
+            <label><input type="radio" name="q3" value="data"> Lab of discovery</label>
+            <label><input type="radio" name="q3" value="sec"> Stronghold</label>
+            <label><input type="radio" name="q3" value="sys"> Engine room</label>
+            <label><input type="radio" name="q3" value="devops"> Workshop</label>
           </div>
-
-          <!-- Q4 -->
+          <!-- Question 4 -->
           <div class="q">
-            <p>4) Which magical challenge would you take on?</p>
-            <div class="choices">
-              <input id="q4-puzzle" type="radio" name="q4" value="puzzle">
-              <label for="q4-puzzle">Solve intricate riddles with elegant logic</label>
-
-              <input id="q4-vision" type="radio" name="q4" value="vision">
-              <label for="q4-vision">Foresee trends by analyzing hidden data</label>
-
-              <input id="q4-battle" type="radio" name="q4" value="battle">
-              <label for="q4-battle">Duel hackers and protect enchanted vaults</label>
-
-              <input id="q4-optimize" type="radio" name="q4" value="optimize">
-              <label for="q4-optimize">Tune performance to magical perfection</label>
-
-              <input id="q4-construct" type="radio" name="q4" value="construct">
-              <label for="q4-construct">Construct seamless automated workflows</label>
-            </div>
+            <p>4. What challenge excites you most?</p>
+            <label><input type="radio" name="q4" value="web"> Puzzles</label>
+            <label><input type="radio" name="q4" value="data"> Visions of insight</label>
+            <label><input type="radio" name="q4" value="sec"> Battle & defense</label>
+            <label><input type="radio" name="q4" value="sys"> Optimizing systems</label>
+            <label><input type="radio" name="q4" value="devops"> Building frameworks</label>
           </div>
-
-          <!-- Q5 -->
+          <!-- Question 5 -->
           <div class="q">
-            <p>5) Which companion would guide your studies?</p>
-            <div class="choices">
-              <input id="q5-phoenix" type="radio" name="q5" value="phoenix">
-              <label for="q5-phoenix">A Phoenix — creative, resilient, ever-renewing</label>
-
-              <input id="q5-raven" type="radio" name="q5" value="raven">
-              <label for="q5-raven">A Raven — insightful, sharp, data-driven</label>
-
-              <input id="q5-dragon" type="radio" name="q5" value="dragon">
-              <label for="q5-dragon">A Dragon — fierce, protective, powerful</label>
-
-              <input id="q5-unicorn" type="radio" name="q5" value="unicorn">
-              <label for="q5-unicorn">A Unicorn — pure, efficient, graceful</label>
-
-              <input id="q5-owl" type="radio" name="q5" value="owl">
-              <label for="q5-owl">An Owl — wise, dependable, systematic</label>
-            </div>
-          </div>
-
-          <div class="modal-actions">
-            <button type="button" id="submit-sorting" class="btn primary">Reveal my Path</button>
-            <button type="button" id="sorting-cancel" class="btn ghost">Cancel</button>
+            <p>5. Choose a magical creature:</p>
+            <label><input type="radio" name="q5" value="web"> Phoenix</label>
+            <label><input type="radio" name="q5" value="data"> Raven</label>
+            <label><input type="radio" name="q5" value="sec"> Dragon</label>
+            <label><input type="radio" name="q5" value="sys"> Unicorn</label>
+            <label><input type="radio" name="q5" value="devops"> Owl</label>
           </div>
         </form>
 
-        <div id="sorting-result" class="sorting-result" aria-live="polite"></div>
+        <!-- Result -->
+        <div id="sorting-result" class="result-card" style="display:none;"></div>
       </div>
     </div>
   </div>
@@ -444,7 +378,7 @@
     </div>
   </footer>
 
-  <!-- Ambient audio (muted by default) -->
+  <!-- Ambient audio -->
   <audio id="bg-audio" loop preload="auto" muted>
     <source src="assets/theme-bg.mp3" type="audio/mpeg">
   </audio>
@@ -452,5 +386,3 @@
   <script src="main.js" defer></script>
 </body>
 </html>
-
-

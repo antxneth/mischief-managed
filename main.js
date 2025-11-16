@@ -264,68 +264,227 @@ const SortingQuiz = (() => {
   };
 })();
 
-/* -------------------------------------------------------------------------- */
-/* Playground, Terminal, Quizzes, CTF, Resume, Cheat downloads, Nav & flips   */
-/* (unchanged features integrated back)                                       */
-/* -------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------- */
+/* Why CS?, Playground, Terminal, Quizzes, CTF, Resume, Cheat downloads, Nav & flips   */
+/* ----------------------------------------------------------------------------------- */
 
-/* Playground */
-$('#pg-run')?.addEventListener('click', () => {
-  const html = $('#pg-html')?.value || '';
-  const css = $('#pg-css')?.value || '';
-  const output = $('#pg-output');
-  if (!output || !output.contentWindow) return;
-  const doc = output.contentWindow.document;
-  doc.open();
-  doc.write(`<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${html}</body></html>`);
-  doc.close();
-});
-$('#pg-reset')?.addEventListener('click', () => {
-  if ($('#pg-html')) $('#pg-html').value = `<div class="card-sample"><h3>Spellbook Widget</h3><p>Welcome apprentice!</p></div>`;
-  if ($('#pg-css')) $('#pg-css').value = `.card-sample{padding:12px;border-radius:8px;background:#fff;color:#04121a}`;
-  $('#pg-run')?.click();
-});
+/* Why CS */
+function typeWriter(el, text) {
+  let i = 0;
+  el.textContent = ""; // clear before typing
 
-/* Terminal simulation */
-$('#term-run')?.addEventListener('click', () => {
-  const out = $('#term-output');
-  if (out) out.textContent = '> Building potion...\n> Installing ingredients...\n> Running unit tests...\n> Packaging container...\n> Deploying to staging...\n> ✅ Potion deployed (simulated).';
-});
-$('#term-reset')?.addEventListener('click', () => {
-  const out = $('#term-output');
-  if (out) out.textContent = '> Welcome to the Potions Lab terminal. Press Run to simulate building a potion (project).';
-});
+  function type() {
+    if (i <= text.length) {
+      el.textContent = text.substring(0, i);
+      i++;
+      setTimeout(type, 70);
+    }
+  }
 
-/* Divination mini-quiz */
-$('#dq-check')?.addEventListener('click', () => {
-  const choice = (document.querySelector('input[name="dq"]:checked')||{}).value;
-  const el = $('#dq-result');
+  type();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.querySelector(".typewrite");
   if (!el) return;
-  if (!choice) { el.textContent = 'Pick an answer.'; return; }
-  if (choice === 'f1' || choice === 'auc') el.textContent = 'Correct — for imbalanced classes prefer F1 or AUC (context matters).';
-  else el.textContent = 'Not ideal — accuracy can be misleading for imbalanced datasets.';
+
+  const text = JSON.parse(el.getAttribute("data-text"))[0];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        typeWriter(el, text);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(document.querySelector("#why-cs"));
 });
 
-/* Micro-CTF */
-$('#ctf-check')?.addEventListener('click', () => {
-  const val = ($('#ctf-input')?.value || '').trim();
-  const out = $('#ctf-result');
-  const secret = 'alohomora-2025';
-  if (!out) return;
-  if (val === secret) out.textContent = 'Correct! You found the token — nice forensic thinking.';
-  else out.textContent = 'Incorrect token. Look for clues and try again.';
+
+// --- SPELLBOOK --- //
+const spellCards = document.querySelectorAll('.spell-card');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+spellCards.forEach(card => observer.observe(card));
+
+// Tap flip for mobile
+spellCards.forEach(card => {
+  card.addEventListener('click', () => {
+    card.querySelector('.spell-inner').classList.toggle('active');
+  });
 });
 
-/* Resume generation */
-$('#download-resume')?.addEventListener('click', () => {
-  const profile = JSON.parse(localStorage.getItem('codecraft_profile') || 'null') || {house:'Not sorted', path:'Undeclared', label:'Undeclared'};
-  const content = `Name: [Your Name]\nHouse: ${profile.house}\nRecommended Path: ${profile.label}\n\nExperience:\n[Project 1]\n[Project 2]\n\nSkills:\n- JavaScript, Python\n- Git, Docker\n`;
-  const blob = new Blob([content], { type: 'text/plain' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'Resume_Codecraft.txt';
-  a.click();
-  URL.revokeObjectURL(a.href);
+// --- POTIONS LAB --- //
+document.addEventListener('DOMContentLoaded', () => {
+  const terminalOutput = document.getElementById('term-output');
+  const runBtn = document.getElementById('term-run');
+  const resetBtn = document.getElementById('term-reset');
+
+  const potionSteps = [
+    "> Adding mystical server base... 🧪",
+    "> Mixing routes and endpoints... ✨",
+    "> Adding magical data validation... 🔮",
+    "> Containers are bubbling... 🐉",
+    "> CI/CD pipeline activated... ⚡",
+    "> Potion brewed successfully! 🍵"
+  ];
+
+  let isBrewing = false;
+
+   // Typing effect function
+  function typeLine(line, callback) {
+    let index = 0;
+    const speed = 25; // typing speed
+
+    function type() {
+      terminalOutput.textContent += line[index];
+      index++;
+      terminalOutput.scrollTop = terminalOutput.scrollHeight;
+
+      if (index < line.length) {
+        requestAnimationFrame(type);
+      } else {
+        terminalOutput.textContent += "\n";
+        callback();
+      }
+    }
+    type();
+  }
+
+  // Auto-run all steps in order
+  function brewPotion() {
+    let step = 0;
+    isBrewing = true;
+    runBtn.disabled = true;
+
+    function nextStep() {
+      if (step < potionSteps.length) {
+        typeLine(potionSteps[step], () => {
+          step++;
+          setTimeout(nextStep, 350); // little magical pause
+        });
+      } else {
+        isBrewing = false;
+        runBtn.disabled = false;
+      }
+    }
+
+    nextStep();
+  }
+
+  runBtn.addEventListener('click', () => {
+    if (isBrewing) return;
+    terminalOutput.textContent = "> Brewing potion... 🍯\n\n";
+    brewPotion();
+  });
+
+  resetBtn.addEventListener('click', () => {
+    terminalOutput.textContent = "> Welcome to the Potions Lab. Press Run to brew a potion...";
+    isBrewing = false;
+    runBtn.disabled = false;
+  });
+});
+
+/* === DIVINATION === */
+document.addEventListener('DOMContentLoaded', () => {
+  // Orb insights
+  const orbs = document.querySelectorAll('.orb');
+  const insightBox = document.getElementById('orb-insight');
+
+  orbs.forEach(orb => {
+    orb.addEventListener('mouseenter', () => {
+      insightBox.textContent = orb.dataset.insight;
+    });
+    orb.addEventListener('click', () => {
+      insightBox.textContent = orb.dataset.insight;
+    });
+  });
+
+  // Quiz logic
+  const checkBtn = document.getElementById('dq-check');
+  const result = document.getElementById('dq-result');
+
+  checkBtn.addEventListener('click', () => {
+    const selected = document.querySelector('input[name="dq"]:checked');
+    if (!selected) {
+      result.textContent = "Please select an answer!";
+      result.style.color = "#ffcc00";
+      return;
+    }
+    if (selected.value === 'f1') {
+      result.textContent = "Correct! F1-score is best for imbalanced datasets.";
+      result.style.color = "#00ff99";
+    } else {
+      result.textContent = "Not quite — try thinking about precision and recall balance.";
+      result.style.color = "#ff5555";
+    }
+  });
+});
+
+/* === DEFENSE ===  */
+document.addEventListener('DOMContentLoaded', () => {
+  const ctfInput = document.getElementById('ctf-input');
+  const ctfBtn = document.getElementById('ctf-check');
+  const ctfResult = document.getElementById('ctf-result');
+
+  // Predefined token (hidden in page source)
+  const SECRET_TOKEN = 'witches2025';
+
+  // Typing effect
+  function typeWriter(element, text, speed = 40) {
+    element.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+      element.textContent += text.charAt(i);
+      i++;
+      if(i >= text.length) clearInterval(interval);
+    }, speed);
+  }
+
+  ctfBtn.addEventListener('click', () => {
+    const answer = ctfInput.value.trim();
+
+    if (!answer) return;
+
+    if(answer === SECRET_TOKEN) {
+      typeWriter(ctfResult, '> Correct! The firewall stands strong 🛡️');
+    } else {
+      typeWriter(ctfResult, '> Incorrect! Check your hints and try again 🔒');
+    }
+
+    ctfInput.value = '';
+  });
+});
+
+
+/* === MINISTRY === */
+document.addEventListener('DOMContentLoaded', () => {
+  const orb = document.getElementById('career-orb');
+  const suggestion = document.getElementById('career-suggestion');
+
+  const careers = [
+    "💻 Software Engineer – Build apps and websites.",
+    "📊 Data Scientist – Analyze and interpret data.",
+    "🛡 Security Analyst – Protect systems and users.",
+    "⚙ DevOps Engineer – Automate deployments and infrastructure.",
+    "🎨 UI/UX Designer – Make apps usable and beautiful.",
+    "🤖 AI/ML Engineer – Teach machines to learn.",
+    "📚 Open Source Contributor – Help the community while learning."
+  ];
+
+  orb.addEventListener('click', () => {
+    const randomCareer = careers[Math.floor(Math.random() * careers.length)];
+    suggestion.textContent = randomCareer;
+  });
 });
 
 /* Cheat pack download */

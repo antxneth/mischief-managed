@@ -21,10 +21,36 @@
   --muted: #dfe8f5;
   --gold: #F0C84A;
   --accent: #7c56ff;
+  --accent-metal: #ffffff;
   --glass: rgba(255,255,255,0.03);
   --card-radius: 14px;
   --max-width: 1100px;
 }
+
+/* Gryffindor */
+:root[data-house="gryffindor"] {
+  --accent: #D0413E;
+  --accent-metal: #F5C518;
+}
+
+/* Slytherin */
+:root[data-house="slytherin"] {
+  --accent: #1A7F5A;
+  --accent-metal: #C0C0C0;
+}
+
+/* Ravenclaw */
+:root[data-house="ravenclaw"] {
+  --accent: #0E3A70;
+  --accent-metal: #B8762E;
+}
+
+/* Hufflepuff */
+:root[data-house="hufflepuff"] {
+  --accent: #F1C40F;
+  --accent-metal: #1A1A1A;
+}
+
 
 /* === NORMALIZE & RESET === */
 *,
@@ -154,7 +180,7 @@ svg {
   transform: translateY(-2px);
 }
 .btn.primary {
-  background: linear-gradient(90deg,var(--accent), #89c1ff);
+  background: linear-gradient(360deg,var(--accent), #89c1ff);
   color: #031021;
   box-shadow: 0 12px 40px rgba(124,86,255,0.12);
 }
@@ -239,17 +265,61 @@ main {
 }
 
 /* === BROCHURE STATS === */
-.stats-grid {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
+#why-cs .content h2 {
+  font-size: 1.5rem; 
+  margin-bottom: 0.5rem;
 }
+
+#why-cs .lead {
+  max-width: 100%; 
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.stats-grid {
+  margin-top: 0; 
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
 .stat {
-  flex: 1;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-  padding: 14px;
-  border-radius: 10px;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 0.9rem 1rem 0.6rem;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.stat h3 {
+  font-size: 95rem;
+  margin-bottom: 0.2rem;
+}
+
+.stat p.detail {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.25s ease, max-height 0.25s ease;
+}
+
+.stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.stat:hover p.detail {
+  opacity: 1;
+  max-height: 150px;
 }
 
 /* === CTA ROW === */
@@ -559,63 +629,293 @@ main {
   font-weight: 700;
 }
 
-/* === SPELLBOOK === */
-.spellbook {
-  text-align: center;
-  padding: 60px 20px;
+/* === WHY CS === */
+.typewrite {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--accent-color, #f5c518);
+  animation: caret 0.7s infinite;
 }
 
+@keyframes caret {
+  50% { border-color: transparent; }
+}
+
+/* === SPELLBOOK === */
 .spellbook-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
 }
 
 .spell-card {
+  perspective: 1000px;
+}
+
+.spell-inner {
   position: relative;
   width: 100%;
-  max-width: 260px;
-  height: 220px;
-  perspective: 1000px;
+  height: 200px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
   cursor: pointer;
 }
 
+.spell-card:hover .spell-inner,
+.spell-card.active .spell-inner {
+  transform: rotateY(180deg);
+}
+
 .spell-front, .spell-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.05);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.spell-front:hover {
+  box-shadow: 0 0 15px 5px rgba(255,255,255,0.3);
+}
+
+.spell-back {
+  transform: rotateY(180deg);
+  font-size: 0.9rem;
+  opacity: 0.95;
+  text-align: center;
+}
+
+.spell-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, gold, white, gold);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 2s infinite;
+}
+
+.spell-sub {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200%; }
+  100% { background-position: 200%; }
+}
+
+/* Scroll reveal */
+.spell-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.spell-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === POTIONS LAB === */
+.terminal-container { margin-bottom: 2rem; }
+.terminal {
+  background: #04121a;
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-height: 100px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Potion Cards */
+.potion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.potion-card { perspective: 1000px; }
+
+.potion-inner {
+  background: rgba(255,255,255,0.05);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative; 
+}
+
+.potion-card:hover .potion-inner { transform: rotateY(180deg); }
+
+.potion-front, .potion-back {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
-  border: 2px solid var(--gold);
   backface-visibility: hidden;
-  transition: transform 0.6s ease-in-out;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 15px;
+  align-items: center;
+  text-align: center;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
 }
 
-.spell-front {
-  background: rgba(20, 20, 20, 0.95);
-  color: var(--gold);
+.potion-front h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
-.spell-back {
-  background: rgba(40, 40, 40, 0.95);
-  color: var(--parchment);
+.potion-front p {
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.potion-back {
   transform: rotateY(180deg);
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
-.spell-card.flipped .spell-front {
-  transform: rotateY(180deg);
+/* === DIVINATION === */
+/* Crystal Orbs */
+.crystal-orbs {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
 }
 
-.spell-card.flipped .spell-back {
-  transform: rotateY(360deg);
+.orb {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orb:hover {
+  transform: scale(1.3);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.orb-insight {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #f0f0f0;
+  min-height: 2rem;
+}
+
+/* === DEFENSE === */
+.ctf-input {
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-result {
+  margin-top: 0.5rem;
+  font-family: monospace;
+  white-space: pre-line;
+  min-height: 2em;
+  color: #ffd700;
+}
+
+.defense-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.defense-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.defense-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+
+/* === Ministry === */
+.career-orb {
+  font-size: 3rem;
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffd700, #ffa500);
+  cursor: pointer;
+  margin: 1rem auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.career-orb:hover {
+  transform: scale(1.2) rotate(15deg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.career-suggestion {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  min-height: 2rem;
+}
+
+.career-resources li, .career-tips li {
+  margin-bottom: 0.5rem;
+}
+
+.career-resources a {
+  text-decoration: none;
+  color: #ffd700;
+  transition: color 0.2s;
+}
+
+.career-resources a:hover {
+  color: #ffa500;
 }
 
 /* === FOOTER === */

@@ -399,52 +399,51 @@
     </section>
 
     <!-- DIVINATION & DATA -->
-<!-- DIVINATION & DATA -->
-<section id="divination-data" class="section" aria-labelledby="divination-title">
-  <div class="container">
-    <img src="assets/icons/crystal-ball.svg" alt="" class="section-icon" loading="lazy">
-    <div class="content">
-      <h2 id="divination-title">Divination & Data — AI / ML / Data Science</h2>
-      <p class="lead">
-        Data is the modern crystal ball — discover patterns, make predictions, and understand AI responsibly.
-      </p>
-
-      <h3>Crystal Orbs — Interactive Predictions</h3>
-      <p>Hover or click on a crystal orb to see a magical data insight appear.</p>
-      <div class="crystal-orbs">
-        <div class="orb" data-insight="Predict Hogwarts House Points based on student attributes.">🔮</div>
-        <div class="orb" data-insight="Forecast potion success rates using magical ingredients.">🔮</div>
-        <div class="orb" data-insight="Analyze Quidditch team stats to find the winning strategy.">🔮</div>
-        <div class="orb" data-insight="See which spells are most effective in duels.">🔮</div>
+    <section id="divination-data" class="section" aria-labelledby="divination-title">
+      <div class="container">
+        <img src="assets/icons/crystal-ball.svg" alt="" class="section-icon" loading="lazy">
+        <div class="content">
+          <h2 id="divination-title">Divination & Data — AI / ML / Data Science</h2>
+          <p class="lead">
+            Data is the modern crystal ball — discover patterns, make predictions, and understand AI responsibly.
+          </p>
+    
+          <h3>Crystal Orbs — Interactive Predictions</h3>
+          <p>Hover or click on a crystal orb to see a magical data insight appear.</p>
+          <div class="crystal-orbs">
+            <div class="orb" data-insight="Predict Hogwarts House Points based on student attributes.">🔮</div>
+            <div class="orb" data-insight="Forecast potion success rates using magical ingredients.">🔮</div>
+            <div class="orb" data-insight="Analyze Quidditch team stats to find the winning strategy.">🔮</div>
+            <div class="orb" data-insight="See which spells are most effective in duels.">🔮</div>
+          </div>
+          <div id="orb-insight" class="orb-insight" aria-live="polite">Hover or click an orb to reveal a magical insight...</div>
+    
+          <h3>Mini Challenges</h3>
+          <p>Pick the correct metric for an imbalanced magical dataset:</p>
+          <div class="choices-quiz">
+            <input id="dq-accuracy" type="radio" name="dq" value="accuracy">
+            <label for="dq-accuracy">Accuracy</label>
+    
+            <input id="dq-auc" type="radio" name="dq" value="auc">
+            <label for="dq-auc">AUC-ROC</label>
+    
+            <input id="dq-f1" type="radio" name="dq" value="f1">
+            <label for="dq-f1">F1-score</label>
+          </div>
+          <div class="pg-controls">
+            <button id="dq-check" class="btn small">Check answer</button>
+          </div>
+          <div id="dq-result" class="quiz-result" aria-live="polite"></div>
+    
+          <h3>Applications</h3>
+          <ul class="bullets">
+            <li>Predictive analytics in health, climate, and magical industries</li>
+            <li>Visualization to reveal hidden patterns in enchanted datasets</li>
+            <li>Ethical AI & responsible magic — know the limits of your spells</li>
+          </ul>
+        </div>
       </div>
-      <div id="orb-insight" class="orb-insight" aria-live="polite">Hover or click an orb to reveal a magical insight...</div>
-
-      <h3>Mini Challenges</h3>
-      <p>Pick the correct metric for an imbalanced magical dataset:</p>
-      <div class="choices-quiz">
-        <input id="dq-accuracy" type="radio" name="dq" value="accuracy">
-        <label for="dq-accuracy">Accuracy</label>
-
-        <input id="dq-auc" type="radio" name="dq" value="auc">
-        <label for="dq-auc">AUC-ROC</label>
-
-        <input id="dq-f1" type="radio" name="dq" value="f1">
-        <label for="dq-f1">F1-score</label>
-      </div>
-      <div class="pg-controls">
-        <button id="dq-check" class="btn small">Check answer</button>
-      </div>
-      <div id="dq-result" class="quiz-result" aria-live="polite"></div>
-
-      <h3>Applications</h3>
-      <ul class="bullets">
-        <li>Predictive analytics in health, climate, and magical industries</li>
-        <li>Visualization to reveal hidden patterns in enchanted datasets</li>
-        <li>Ethical AI & responsible magic — know the limits of your spells</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    </section>
 
 
     <!-- DEFENSE -->
@@ -582,7 +581,8 @@
     <source src="assets/theme-bg.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="main.js" defer></script>
+  <script src="./main.js" defer></script>
 </body>
 
 </html>
+

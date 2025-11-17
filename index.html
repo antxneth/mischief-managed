@@ -407,7 +407,7 @@
           <p class="lead">
             Data is the modern crystal ball — discover patterns, make predictions, and understand AI responsibly.
           </p>
-    
+
           <h3>Crystal Orbs — Interactive Predictions</h3>
           <p>Hover or click on a crystal orb to see a magical data insight appear.</p>
           <div class="crystal-orbs">
@@ -417,16 +417,16 @@
             <div class="orb" data-insight="See which spells are most effective in duels.">🔮</div>
           </div>
           <div id="orb-insight" class="orb-insight" aria-live="polite">Hover or click an orb to reveal a magical insight...</div>
-    
+
           <h3>Mini Challenges</h3>
           <p>Pick the correct metric for an imbalanced magical dataset:</p>
           <div class="choices-quiz">
             <input id="dq-accuracy" type="radio" name="dq" value="accuracy">
             <label for="dq-accuracy">Accuracy</label>
-    
+
             <input id="dq-auc" type="radio" name="dq" value="auc">
             <label for="dq-auc">AUC-ROC</label>
-    
+
             <input id="dq-f1" type="radio" name="dq" value="f1">
             <label for="dq-f1">F1-score</label>
           </div>
@@ -434,7 +434,7 @@
             <button id="dq-check" class="btn small">Check answer</button>
           </div>
           <div id="dq-result" class="quiz-result" aria-live="polite"></div>
-    
+
           <h3>Applications</h3>
           <ul class="bullets">
             <li>Predictive analytics in health, climate, and magical industries</li>
@@ -445,11 +445,10 @@
       </div>
     </section>
 
-
     <!-- DEFENSE -->
     <section id="dark-hacks" class="section" aria-labelledby="defense-title">
       <div class="container">
-        <img src="assets/icons/shield.svg" alt="" class="section-icon" loading="lazy">
+        <img src="assets/icons/sword.svg" alt="" class="section-icon" loading="lazy">
         <div class="content">
           <h2 id="defense-title">Defense Against the Dark Hacks — Cybersecurity</h2>
           <p class="lead">
@@ -490,37 +489,92 @@
       </div>
     </section>
 
-
+    <!-- MINISTRY OF TECHNOLOGY -->
 <section id="ministry-tech" class="section" aria-labelledby="ministry-title">
   <div class="container">
     <img src="assets/icons/scroll.svg" alt="" class="section-icon" loading="lazy">
     <div class="content">
       <h2 id="ministry-title">Ministry of Tech — Careers & Portfolios</h2>
-      <p class="lead">Explore CS career paths, projects, and resources to level up your skills.</p>
+      <p class="lead">
+        Discover magical career paths you can pursue with Computer Science.  
+        Each card reveals what the role does, and includes a helpful beginner-friendly resource.
+      </p>
 
-      <!-- Interactive Career Orb -->
-      <div id="career-orb" class="career-orb" title="Click to discover a path!">
-        🪄
+      <div class="career-grid">
+
+        <!-- Software Engineer -->
+        <div class="career-card">
+          <div class="career-front">
+            <h3>Software Engineer</h3>
+            <p>Build apps, solve problems, collaborate.</p>
+          </div>
+          <div class="career-back">
+            <p>Create products, improve systems, and shape the digital world.</p>
+            <a href="https://roadmap.sh/software-architect" target="_blank" class="btn tiny">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Data Scientist -->
+        <div class="career-card">
+          <div class="career-front">
+            <h3>Data Scientist</h3>
+            <p>Analyze, predict, and discover insights.</p>
+          </div>
+          <div class="career-back">
+            <p>Use statistics and ML to find patterns and drive decisions.</p>
+            <a href="https://roadmap.sh/ai-data-scientist" target="_blank" class="btn tiny">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Security Analyst -->
+        <div class="career-card">
+          <div class="career-front">
+            <h3>Cybersecurity Analyst</h3>
+            <p>Protect systems & uncover threats.</p>
+          </div>
+          <div class="career-back">
+            <p>Think like an attacker, defend like a wizard.</p>
+            <a href="https://roadmap.sh/cyber-security" target="_blank" class="btn tiny">Learn More</a>
+          </div>
+        </div>
+
+        <!-- UX Designer -->
+        <div class="career-card">
+          <div class="career-front">
+            <h3>UX / UI Designer</h3>
+            <p>Design beautiful & intuitive experiences.</p>
+          </div>
+          <div class="career-back">
+            <p>Focus on aesthetics, usability, and user happiness.</p>
+            <a href="https://www.interaction-design.org/" target="_blank" class="btn tiny">Learn More</a>
+          </div>
+        </div>
+
+        <!-- DevOps Engineer -->
+        <div class="career-card">
+          <div class="career-front">
+            <h3>DevOps Engineer</h3>
+            <p>Automate, maintain, deploy magically.</p>
+          </div>
+          <div class="career-back">
+            <p>CI/CD, cloud, pipelines — keep everything running smoothly.</p>
+            <a href="https://roadmap.sh/devops" target="_blank" class="btn tiny">Learn More</a>
+          </div>
+        </div>
+
+        <!-- NEW: Cloud Engineer -->
+        <div class="career-card">
+          <div class="career-front">
+            <h3>Cloud Engineer</h3>
+            <p>Build infrastructure in the digital sky.</p>
+          </div>
+          <div class="career-back">
+            <p>Deploy apps globally using AWS, GCP, Azure & automation.</p>
+            <a href="https://roadmap.sh/cloud" target="_blank" class="btn tiny">Learn More</a>
+          </div>
+        </div>
+
       </div>
-      <div id="career-suggestion" class="career-suggestion">
-        Click the orb to get a career suggestion!
-      </div>
-
-      <h3>Resources</h3>
-      <ul class="career-resources">
-        <li><a href="https://github.com/" target="_blank">💻 Explore GitHub Repositories</a></li>
-        <li><a href="https://www.freecodecamp.org/" target="_blank">📘 Learn Programming Tutorials</a></li>
-        <li><a href="https://www.kaggle.com/" target="_blank">📊 AI / ML Projects</a></li>
-        <li><a href="https://www.cybrary.it/" target="_blank">🛡 Cybersecurity Training</a></li>
-      </ul>
-
-      <h3>Quick Career Tips</h3>
-      <ul class="career-tips">
-        <li>Build a portfolio of small projects.</li>
-        <li>Practice coding challenges daily.</li>
-        <li>Learn to collaborate via Git/GitHub.</li>
-        <li>Document your work clearly.</li>
-      </ul>
     </div>
   </div>
 </section>
@@ -581,8 +635,6 @@
     <source src="assets/theme-bg.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="./main.js" defer></script>
+  <script src="main.js" defer></script>
 </body>
-
 </html>
-

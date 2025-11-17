@@ -467,25 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* === MINISTRY === */
-document.addEventListener('DOMContentLoaded', () => {
-  const orb = document.getElementById('career-orb');
-  const suggestion = document.getElementById('career-suggestion');
 
-  const careers = [
-    "💻 Software Engineer – Build apps and websites.",
-    "📊 Data Scientist – Analyze and interpret data.",
-    "🛡 Security Analyst – Protect systems and users.",
-    "⚙ DevOps Engineer – Automate deployments and infrastructure.",
-    "🎨 UI/UX Designer – Make apps usable and beautiful.",
-    "🤖 AI/ML Engineer – Teach machines to learn.",
-    "📚 Open Source Contributor – Help the community while learning."
-  ];
-
-  orb.addEventListener('click', () => {
-    const randomCareer = careers[Math.floor(Math.random() * careers.length)];
-    suggestion.textContent = randomCareer;
-  });
-});
 
 /* Cheat pack download */
 $('#download-cheats')?.addEventListener('click', () => {
